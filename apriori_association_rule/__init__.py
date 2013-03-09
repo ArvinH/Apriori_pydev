@@ -1,10 +1,10 @@
 import string
+import re
 def getSrcData():
     f = open('../DataSrc/datasrc.txt','r')
     srcdata = []
     for lines in f:
-        line = lines.split('\t')
-        line[1] = line[1].strip('\n')
+        line = re.split('\W+',lines)
         srcdata.append(line)
         
     f.close()
