@@ -16,19 +16,17 @@ class Apriori:
    '''
 def getSrcData():
        f = open('../DataSrc/datasrc.txt','r')
-       srcdata = []
+       srcdata = dict()
        Can1 = dict()
-       temp = dict()   
        for lines in f:
           lines = lines.strip('\n')
           line = re.split('\W+',lines)
           for item in line:
-             if item not in temp:
-                temp[item] = 1
+             if item not in srcdata:
+                srcdata[item] = 1
              else:
-               i = temp[item]
-               temp[item] = i+1
-               print(temp)
+               i = srcdata[item]
+               srcdata[item] = i+1
        
        f.close()
        return srcdata
