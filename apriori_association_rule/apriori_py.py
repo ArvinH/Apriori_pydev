@@ -68,6 +68,7 @@ class Apriori:
       #get C1
       candidate_set = self.getC1(srcdata)
       L = {}
+      Lk = {}
       while True:
          #keep test if there any new L generate, if not, then over.
          TempL = self.getL(candidate_set)
@@ -75,9 +76,10 @@ class Apriori:
             break
          else:
             L = TempL
-         #get next candidate from pre L
-         candidate_set = self.getC2(L,srcdata)
-      return L
+            #get next candidate from pre L
+            candidate_set = self.getC2(L,srcdata)
+            Lk.update(L)
+      return Lk
 
 def main():
    a = Apriori('../DataSrc/datasrc.txt',0.5,0.66)
