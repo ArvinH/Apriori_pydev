@@ -91,10 +91,7 @@ class Apriori:
                   
                   conf = freq_itemset[diffset]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
-                    print(freq_item1),
-                    print('->'),
-                    print(freq_item2.difference(freq_item1))
-                    print('')
+                    print(freq_item1,'->',diffset)
 def main():
    a = Apriori('../DataSrc/datasrc.txt',0.5,0.66)
    L = a.Apriori_algo()
