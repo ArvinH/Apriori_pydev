@@ -95,7 +95,6 @@ class Apriori:
 def main():
    a = Apriori('../DataSrc/datasrc.txt',0.5,0.66)
    L = a.Apriori_algo()
-   print(L)
    a.genAssociation_Rule(L)
 
 
