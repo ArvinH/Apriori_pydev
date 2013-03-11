@@ -50,6 +50,7 @@ class Apriori:
   # and scan original dataset
   def getC2(self,preL, srcdata):
       c2 = {}
+      # would have some redundant computation...
       for key1 in preL:
          for key2 in preL:
             if key1 != key2:
@@ -80,12 +81,25 @@ class Apriori:
             candidate_set = self.getC2(L,srcdata)
             Lk.update(L)
       return Lk
-
+  def genAssociation_Rule(self, freq_itemset):
+      # find every frequency itemset and count their conf
+      for freq_item1 in freq_itemset:
+         for freq_item2 in freq_itemset:
+            if freq_item1 != freq_item2:
+               if freq_item1.issubset(freq_item2):
+                  diffset = freq_item2.difference(freq_item1)
+                  
+                  conf = freq_itemset[diffset]/freq_itemset[freq_item1]
+                  if conf >= self.minConf:
+                    print(freq_item1),
+                    print('->'),
+                    print(freq_item2.difference(freq_item1))
+                    print('')
 def main():
    a = Apriori('../DataSrc/datasrc.txt',0.5,0.66)
-   srcdata = a.getSrcData()
-   print(a.Apriori_algo())
-
+   L = a.Apriori_algo()
+   print(L)
+   a.genAssociation_Rule(L)
 
 
 
