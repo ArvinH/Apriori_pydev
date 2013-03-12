@@ -1,3 +1,4 @@
+import sys
 import string
 import re
 class Apriori:
@@ -91,11 +92,22 @@ class Apriori:
                   
                   conf = freq_itemset[diffset]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
-                    print(freq_item1,'->',diffset)
+                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1])
 def main():
-   a = Apriori('../DataSrc/datasrc.txt',0.5,0.66)
-   L = a.Apriori_algo()
-   a.genAssociation_Rule(L)
+   num_args = len(sys.argv)
+   dataset = ''
+   minSupport = minConfidence = 0
+   print(num_args)
+   if num_args != 4:
+      print('Input format is python3.3 apriori_py.py <dataset> <minSupport> <minConfidence>')
+   else:
+      dataset = sys.argv[1]
+      minSupport = float(sys.argv[2])
+      minConfidence = float(sys.argv[3])
+      print('Dataset in:',dataset,'minSupport:',minSupport,'minConfidence',minConfidence)
+      a = Apriori(dataset,minSupport,minConfidence)
+      L = a.Apriori_algo()
+      a.genAssociation_Rule(L)
 
 
 
