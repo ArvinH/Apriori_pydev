@@ -97,14 +97,13 @@ def main():
    num_args = len(sys.argv)
    dataset = ''
    minSupport = minConfidence = 0
-   print(num_args)
    if num_args != 4:
       print('Input format is python3.3 apriori_py.py <dataset> <minSupport> <minConfidence>')
    else:
       dataset = sys.argv[1]
       minSupport = float(sys.argv[2])
       minConfidence = float(sys.argv[3])
-      print('Dataset in:',dataset,'minSupport:',minSupport,'minConfidence',minConfidence)
+      print('Dataset in:',dataset,', minSupport:',minSupport,', minConfidence:',minConfidence)
       a = Apriori(dataset,minSupport,minConfidence)
       L = a.Apriori_algo()
       a.genAssociation_Rule(L)
