@@ -92,7 +92,7 @@ class Apriori:
                   
                   conf = freq_itemset[diffset]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
-                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1])
+                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1],'and confidence:',conf)
 def main():
    num_args = len(sys.argv)
    dataset = ''
