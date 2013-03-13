@@ -6,6 +6,7 @@ class Apriori:
       self.minSup = minSup
       self.minConf = minConf
       self.filepath = filepath
+      self.num_transaction = 0
   def getSrcData(self):
          f = open(self.filepath,'r')
          srcdata = []
@@ -41,7 +42,8 @@ class Apriori:
       deleted_key = []
       for key in Candidate:
          Can_sup = Candidate[key]
-         if Can_sup < self.minSup:
+         # divide by transaction numbers to get the % result
+         if Can_sup/self.num_transaction < self.minSup:
             deleted_key.append(key)
       #for each key's support count less than given value, then delete
       for key in deleted_key:
@@ -67,6 +69,8 @@ class Apriori:
   def Apriori_algo(self):
       #get src data
       srcdata = self.getSrcData()
+      self.num_transaction = len(srcdata)
+      print(self.num_transaction)
       #get C1
       candidate_set = self.getC1(srcdata)
       L = {}
@@ -92,7 +96,7 @@ class Apriori:
                   
                   conf = freq_itemset[diffset]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
-                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1],'and confidence:',conf)
+                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1]/self.num_transaction,'and confidence:',conf)
 def main():
    num_args = len(sys.argv)
    dataset = ''
