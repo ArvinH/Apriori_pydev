@@ -96,7 +96,8 @@ class Apriori:
                   
                   conf = freq_itemset[diffset]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
-                     print(freq_item1,'->',diffset,'with support:',freq_itemset[freq_item1]/self.num_transaction,'and confidence:',conf)
+                     print(freq_item1,'->',diffset,'with support:','%.2f' % (freq_itemset[freq_item1]/self.num_transaction),'and confidence:','%.2f' % conf)
+                                                                    #limit the digits to 2
 def main():
    num_args = len(sys.argv)
    dataset = ''
