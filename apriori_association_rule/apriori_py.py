@@ -93,8 +93,8 @@ class Apriori:
             if freq_item1 != freq_item2:
                if freq_item1.issubset(freq_item2):
                   diffset = freq_item2.difference(freq_item1)
-                  
-                  conf = freq_itemset[diffset]/freq_itemset[freq_item1]
+                  # freq_item1 is subset of freq_item2
+                  conf = freq_itemset[freq_item2]/freq_itemset[freq_item1]
                   if conf >= self.minConf:
                      print(freq_item1,'->',diffset,'with support:','%.2f' % (freq_itemset[freq_item1]/self.num_transaction),'and confidence:','%.2f' % conf)
                                                                     #limit the digits to 2
@@ -111,6 +111,7 @@ def main():
       print('Dataset in:',dataset,', minSupport:',minSupport,', minConfidence:',minConfidence)
       a = Apriori(dataset,minSupport,minConfidence)
       L = a.Apriori_algo()
+      print(L)
       a.genAssociation_Rule(L)
 
 
